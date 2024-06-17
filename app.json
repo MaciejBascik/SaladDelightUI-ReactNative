@@ -11,6 +11,18 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "plugins": [
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/Cabin.ttf",
+            "./assets/bold.ttf",
+            "./assets/regular.ttf",
+            "./assets/medium.ttf"
+          ]
+        }
+      ]],
     "ios": {
       "supportsTablet": true
     },
