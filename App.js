@@ -5,6 +5,17 @@ import { useState } from 'react';
 import Card from './components/card';
 import SwipeCard from './components/swipeCard';
 export default function App() {
+  const [favorites, setFavorites] = useState([]);
+
+  const handleFavoriteChange = (id, isFavorite) => {
+    console.log(favorites)
+    if (isFavorite) {
+      setFavorites([...favorites, id]);
+    } else {
+      setFavorites(favorites.filter(favId => favId !== id));
+    }
+
+  };
 
 
   const [fontsLoaded, fontError] = useFonts({
@@ -21,21 +32,19 @@ export default function App() {
     { 'name': 'Top', 'isSelected': false }
   ]);
 
-  const hottest = ([
-    { 'name': 'Hottest', 'isSelected': true,'image':'x','title':'x','price':'30', 'imageH':'62', 'imageW':'62' },
-    { 'name': 'Popular', 'isSelected': false },
-    { 'name': 'New', 'isSelected': false },
-    { 'name': 'Top', 'isSelected': false }
-  ]);
 
 function handleOrder(id) {
   alert(id);
 }
 
-function handleLike(id) {
-  alert(id);
+
+if (!fontsLoaded) {
+  return <Text>Loading fonts...</Text>;
 }
 
+if (fontError) {
+  return <Text>Error loading fonts</Text>;
+}
 function handleClick(name) {
   const updatedCategories = categories.map((e) => {
     return {
@@ -52,13 +61,6 @@ function handleClick(name) {
 
 
 
-if (!fontsLoaded) {
-  return <Text>Loading fonts...</Text>;
-}
-
-if (fontError) {
-  return <Text>Error loading fonts</Text>;
-}
 
   return (
 
@@ -78,8 +80,8 @@ if (fontError) {
         Recommended Combos
       </Text>
       <View style={styles.cardContainer}>
-          <Card image="https://i.ibb.co/Sxvq9nx/Honey-Lime-Peach-Fruit-Salad-3-725x725-1-removebg-preview-1.png" title="Honey lime" price="30" handleLike={handleLike} handleOrder={handleOrder}  />
-          <Card image="https://i.ibb.co/2F1VvD8/Glowing-Berry-Fruit-Salad-8-720x720-removebg-preview-1.png" title="Berry mango" price="30" handleLike={handleLike} handleOrder={handleOrder}  />
+          <Card image="https://i.ibb.co/Sxvq9nx/Honey-Lime-Peach-Fruit-Salad-3-725x725-1-removebg-preview-1.png" title="Honey lime" price="30"  handleOrder={handleOrder} onFavoriteChange={handleFavoriteChange} id={1} />
+          <Card image="https://i.ibb.co/2F1VvD8/Glowing-Berry-Fruit-Salad-8-720x720-removebg-preview-1.png" title="Berry mango" price="30" handleOrder={handleOrder}  onFavoriteChange={handleFavoriteChange} id={2}/>
       </View>
       <View style={{ display: 'flex', flexDirection: 'row', paddingTop: 35, paddingBottom:15, gap: 35, justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
         {categories.map((e, idx) => (
@@ -91,9 +93,9 @@ if (fontError) {
 
         
       <ScrollView horizontal={true} style={{ minWidth: Dimensions.get('screen').width }}>
-      <SwipeCard image="https://i.ibb.co/D5py9RL/breakfast-quinoa-and-red-fruit-salad-134061-1-removebg-preview-1.png" title="Quinoa fruit" price="30" handleLike={handleLike} handleOrder={handleOrder}  bg='#FFFAEB' imageH={62} imageW={62}/>
-      <SwipeCard image="https://i.ibb.co/FBGPwPF/Best-Ever-Tropical-Fruit-Salad8-WIDE-removebg-preview-1.png" title="Tropical fruit" price="30" handleLike={handleLike} handleOrder={handleOrder}  bg='#FEF0F0' imageH={48} imageW={94}/>
-      <SwipeCard image="https://i.ibb.co/QNtKj4W/xddd.png" title="Melon fruit" price="30" handleLike={handleLike} handleOrder={handleOrder}  bg='#FFFAEB' imageH={41} imageW={67}/>
+      <SwipeCard image="https://i.ibb.co/D5py9RL/breakfast-quinoa-and-red-fruit-salad-134061-1-removebg-preview-1.png" title="Quinoa fruit" price="30"  handleOrder={handleOrder}  bg='#FFFAEB' imageH={62} imageW={62} onFavoriteChange={handleFavoriteChange} id={3}/>
+      <SwipeCard image="https://i.ibb.co/FBGPwPF/Best-Ever-Tropical-Fruit-Salad8-WIDE-removebg-preview-1.png" title="Tropical fruit" price="30" handleOrder={handleOrder}  bg='#FEF0F0' imageH={48} imageW={94} onFavoriteChange={handleFavoriteChange} id={4}/>
+      <SwipeCard image="https://i.ibb.co/QNtKj4W/xddd.png" title="Melon fruit" price="30"  handleOrder={handleOrder}  bg='#F1EFF6' imageH={41} imageW={67} onFavoriteChange={handleFavoriteChange} id={5}/>
       </ScrollView>
       </View>
 

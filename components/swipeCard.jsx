@@ -1,12 +1,26 @@
 import { View, Text,Pressable,Image,StyleSheet } from 'react-native'
 import React from 'react'
+import { useState } from 'react';
 
-const SwipeCard = ({handleLike, handleOrder, image, title, price, bg='white', imageH=78, imageW=78}) => {
-
+const SwipeCard = ({ handleOrder, image, title, price, bg='white', imageH=78, imageW=78, onFavoriteChange,id }) => {
+    const [vectorImage, setVectorImage] = useState("https://i.ibb.co/VgHtxyy/Vector.png");
+    const [isFavorite, setIsFavorite] = useState(false);
+    const [isActive, setIsActive] = useState(false);
+    const handleVectorClick = () => {
+          setIsFavorite(!isFavorite);
+          onFavoriteChange(id, isFavorite);
+            setIsActive(!isActive);
+        if(isActive) {
+            setVectorImage("https://i.ibb.co/gM7ms5k/Vector2.png");
+        }
+        else {
+            setVectorImage("https://i.ibb.co/VgHtxyy/Vector.png");
+        }        
+    };
   return (
     <View style={[styles.card, { backgroundColor: bg }]}>
-    <Pressable onPress={() => handleLike(2)}>
-      <Image source={{ uri: "https://i.ibb.co/VgHtxyy/Vector.png", height: 12, width: 14 }} style={{ justifyContent: 'flex-end', alignItems: 'flex-end', alignContent: 'flex-end', marginBottom: 5 }} />
+    <Pressable onPress={() => handleVectorClick()}>
+      <Image source={{ uri: vectorImage, height: 12, width: 14 }} style={{ justifyContent: 'flex-end', alignItems: 'flex-end', alignContent: 'flex-end', marginBottom: 5 }} />
       </Pressable>
       <Image source={{ uri: image, height: imageH, width: imageW }} style={{ marginBottom: 10 }} />
       <Text style={{ fontSize: 14, color: '#27214D', fontFamily: 'Medium', width: '100%' }}>{title}</Text>
