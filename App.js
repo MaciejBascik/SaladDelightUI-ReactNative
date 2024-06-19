@@ -4,11 +4,12 @@ import { useFonts } from 'expo-font';
 import { useState } from 'react';
 import Card from './components/card';
 import SwipeCard from './components/swipeCard';
+import { RootSiblingParent } from 'react-native-root-siblings';
+import Toast from 'react-native-root-toast';
 export default function App() {
   const [favorites, setFavorites] = useState([]);
 
   const handleFavoriteChange = (id, isFavorite) => {
-    console.log(favorites)
     if (isFavorite) {
       setFavorites([...favorites, id]);
     } else {
@@ -33,8 +34,14 @@ export default function App() {
   ]);
 
 
-function handleOrder(id) {
-  alert(id);
+function handleOrder() {
+  let toast = Toast.show('New order added to cart.', {
+    duration: Toast.durations.LONG,
+  });
+  
+  setTimeout(function hideToast() {
+    Toast.hide(toast);
+  }, 500);
 }
 
 
@@ -63,7 +70,7 @@ function handleClick(name) {
 
 
   return (
-
+<RootSiblingParent>
     <View style={styles.container} >
           <View  style={{
             alignSelf:'flex-start',
@@ -98,7 +105,7 @@ function handleClick(name) {
       <SwipeCard image="https://i.ibb.co/QNtKj4W/xddd.png" title="Melon fruit" price="30"  handleOrder={handleOrder}  bg='#F1EFF6' imageH={41} imageW={67} onFavoriteChange={handleFavoriteChange} id={5}/>
       </ScrollView>
       </View>
-
+      </RootSiblingParent>
   );
 }
 
