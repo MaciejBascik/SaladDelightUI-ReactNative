@@ -7,15 +7,16 @@ const SwipeCard = ({ handleOrder, image, title, price, bg='white', imageH=78, im
     const [isFavorite, setIsFavorite] = useState(false);
     const [isActive, setIsActive] = useState(false);
     const handleVectorClick = () => {
-          setIsFavorite(!isFavorite);
-          onFavoriteChange(id, isFavorite);
-            setIsActive(!isActive);
-        if(isActive) {
-            setVectorImage("https://i.ibb.co/gM7ms5k/Vector2.png");
-        }
-        else {
-            setVectorImage("https://i.ibb.co/VgHtxyy/Vector.png");
-        }        
+      if(isActive) {
+        setVectorImage("https://i.ibb.co/gM7ms5k/Vector2.png");
+    }
+    else {
+        setVectorImage("https://i.ibb.co/VgHtxyy/Vector.png");
+    }   
+        setIsFavorite(!isFavorite);
+        onFavoriteChange(id, isFavorite);
+        setIsActive(!isActive);
+     
     };
   return (
     <View style={[styles.card, { backgroundColor: bg }]}>
@@ -26,7 +27,7 @@ const SwipeCard = ({ handleOrder, image, title, price, bg='white', imageH=78, im
       <Text style={{ fontSize: 14, color: '#27214D', fontFamily: 'Medium', width: '100%' }}>{title}</Text>
       <View style={{ display: 'flex', flexDirection: 'row', paddingHorizontal: 11 }}>
         <Text style={{ fontSize: 12, color: '#F08626', fontFamily: 'Regular', width: '100%' }}>{price} zł</Text>
-        <Pressable onPress={() => handleOrder(1)}>
+        <Pressable onPress={() => handleOrder(title)}>
         <Image source={{ uri: "https://i.ibb.co/gP7YmN7/Group-10.png", height: 22, width: 22 }} style={{ marginBottom: 10 }} />
       </Pressable>
       </View>
