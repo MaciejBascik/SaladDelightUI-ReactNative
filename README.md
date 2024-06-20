@@ -10,7 +10,7 @@ Welcome to **Salad Delight UI**! This is a React Native application designed as 
 - **Theming**: Implements theming to create a consistent and attractive user interface.
 - **Responsive Design**: Ensures the UI looks great on both iOS and Android devices.
 
-## Screenshots
+## Overview
 
 https://github.com/MaciejBascik/SaladDelightUI/assets/96304157/92460e9b-9a31-4a16-b411-482a727bb05d
 
