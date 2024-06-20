@@ -29,12 +29,12 @@ Follow these steps to get a copy of the project up and running on your local mac
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/MaciejBascik/SaladDelightUI.git
+   git clone https://github.com/MaciejBascik/SaladDelightUI-ReactNative.git
 Navigate to the project directory:
 
 ### Copy code
 
-cd SaladDelightUI
+cd SaladDelightUI-ReactNative
 
 ### Install the dependencies:
 
